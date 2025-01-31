@@ -749,23 +749,41 @@ header h1 {
 
 /* Update mobile responsive styles */
 @media (max-width: 768px) {
+    /* Adjust container spacing */
     .container {
-        margin: 1rem auto;
-        padding: 0 0.75rem;
+        margin: 4rem auto 6rem;  /* Add more space top and bottom */
+        padding: 0 1rem;
+        width: 100%;
     }
 
-    header h1 {
-        font-size: 2rem;
+    /* Fix color theme selector position */
+    .color-themes {
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        background: var(--background);
+        padding: 0.5rem;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
     }
 
-    .date-display {
-        font-size: 1rem;
+    /* Adjust theme switcher */
+    .theme-switcher {
+        top: 0.5rem;
+        right: 0.5rem;
     }
 
+    /* Fix goal input spacing */
     .goal-input {
+        margin-bottom: 1rem;
         flex-direction: column;
-        padding: 1rem;
-        gap: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .goal-input input {
+        width: 100%;
     }
 
     .goal-input button {
@@ -773,33 +791,17 @@ header h1 {
         justify-content: center;
     }
 
+    /* Adjust goals container */
     .goals-container {
-        padding: 1rem;
-    }
-
-    .goal-item {
-        padding: 0.75rem;
-    }
-
-    /* Fix color theme selector position */
-    .color-themes {
-        top: auto;
-        bottom: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 999;
-    }
-
-    /* Adjust theme switcher */
-    .theme-switcher {
-        top: 1rem;
-        right: 1rem;
+        margin-bottom: 5rem;  /* Add space for bottom elements */
+        border-radius: 16px;
     }
 
     /* Fix AI assistant positioning */
     .ai-assistant {
-        bottom: 5rem;
+        bottom: 4.5rem;  /* Position above color themes */
         right: 1rem;
+        z-index: 998;
     }
 
     .ai-toggle {
@@ -808,85 +810,50 @@ header h1 {
         padding: 0;
     }
 
-    .ai-toggle span {
-        display: none;
+    /* Ensure proper stacking */
+    .color-themes {
+        z-index: 997;
+    }
+    
+    .theme-switcher {
+        z-index: 996;
     }
 
-    .chat-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100vh;
-        margin: 0;
-        border-radius: 0;
+    /* Adjust header spacing */
+    header {
+        margin-top: 3rem;  /* Add space for theme switcher */
+        margin-bottom: 1.5rem;
     }
 
-    .chat-messages {
-        height: calc(100vh - 120px);
-    }
-
-    .message-content {
-        max-width: 85%;
-        font-size: 0.95rem;
-    }
-
-    /* Adjust background characters for mobile */
-    .character {
-        width: 80px;
-        height: 80px;
-    }
-
-    /* Fix input and buttons for touch */
-    input, button {
-        font-size: 16px !important; /* Prevent zoom on iOS */
-        min-height: 44px; /* Better touch targets */
-    }
-
-    .goal-checkbox {
-        width: 28px;
-        height: 28px;
-        min-width: 28px;
-    }
-
-    .delete-btn {
-        width: 36px;
-        height: 36px;
+    /* Make buttons more touch-friendly */
+    .color-theme-btn {
+        width: 32px;
+        height: 32px;
+        margin: 0 2px;
     }
 }
 
-/* Add specific fixes for smaller phones */
+/* Additional fixes for very small screens */
 @media (max-width: 380px) {
-    header h1 {
-        font-size: 1.75rem;
-    }
-
-    .goal-item {
-        padding: 0.5rem;
+    .container {
+        margin: 3.5rem auto 5rem;
     }
 
     .color-themes {
-        padding: 0.5rem;
-        gap: 0.25rem;
+        padding: 0.4rem;
     }
 
     .color-theme-btn {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
     }
 }
 
 /* Fix for notched phones */
 @supports (padding: max(0px)) {
-    .chat-container {
-        padding-top: max(1rem, env(safe-area-inset-top));
+    .container {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
         padding-bottom: max(1rem, env(safe-area-inset-bottom));
-    }
-
-    body {
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
     }
 }
