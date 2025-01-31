@@ -1,0 +1,12 @@
+{
+  "name": "goal-tracker",
+  "version": "1.0.0",
+  "description": "Goal Tracker Web App",
+  "main": "Untitled-4.js",
+  "scripts": {
+    "start": "node Untitled-4.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 

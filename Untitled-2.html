@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Tracker | Daily Progress</title>
+    <link rel="stylesheet" href="Untitled-3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body>
+    <div class="theme-switcher">
+        <button onclick="toggleTheme()" id="themeToggle">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+    <div class="color-themes">
+        <button onclick="setColorTheme('indigo')" class="color-theme-btn theme-indigo active" title="Indigo"></button>
+        <button onclick="setColorTheme('rose')" class="color-theme-btn theme-rose" title="Rose"></button>
+        <button onclick="setColorTheme('emerald')" class="color-theme-btn theme-emerald" title="Emerald"></button>
+        <button onclick="setColorTheme('amber')" class="color-theme-btn theme-amber" title="Amber"></button>
+        <button onclick="setColorTheme('sky')" class="color-theme-btn theme-sky" title="Sky"></button>
+        <button onclick="setColorTheme('violet')" class="color-theme-btn theme-violet" title="Violet"></button>
+    </div>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-check-circle"></i> Goal Tracker</h1>
+            <p class="date-display" id="currentDate"></p>
+        </header>
+        
+        <div class="goal-input">
+            <input 
+                type="text" 
+                id="goalInput" 
+                placeholder="What's your goal for today?"
+                autocomplete="off"
+            >
+            <button onclick="addGoal()">
+                <i class="fas fa-plus"></i> Add Goal
+            </button>
+        </div>
+
+        <div class="goals-container">
+            <div class="goals-header">
+                <h2>Today's Goals</h2>
+                <div class="goals-summary" id="goalsSummary">
+                    <span>0 completed</span> of <span>0 total</span>
+                </div>
+            </div>
+            <ul id="goalsList"></ul>
+        </div>
+
+        <!-- Add AI Assistant Interface -->
+        <div class="ai-assistant">
+            <button class="ai-toggle" onclick="toggleAIChat()">
+                <i class="fas fa-robot"></i>
+                <span>AI Assistant</span>
+            </button>
+            
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-header">
+                    <h3><i class="fas fa-robot"></i> AI Assistant</h3>
+                    <button onclick="toggleAIChat()" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message assistant">
+                        <i class="fas fa-robot"></i>
+                        <div class="message-content">
+                            Hello! I'm your AI assistant. I can help you with:
+                            <ul>
+                                <li>Breaking down complex goals</li>
+                                <li>Suggesting new goals</li>
+                                <li>Providing motivation</li>
+                                <li>Answering questions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input 
+                        type="text" 
+                        id="aiInput" 
+                        placeholder="Ask me anything about your goals..."
+                        onkeypress="handleAIInput(event)"
+                    >
+                    <button onclick="sendAIMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="background-characters">
+        <div class="character character-1"></div>
+        <div class="character character-2"></div>
+        <div class="character character-3"></div>
+        <div class="character character-4"></div>
+    </div>
+    <script src="Untitled-4.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+    </script>
+</body>
+</html>
