@@ -600,24 +600,60 @@ header h1 {
     }
 }
 
-/* Add color theme selector styles */
+/* Update color theme selector styles */
 .color-themes {
     position: fixed;
     top: 1rem;
     left: 1rem;
-    background: var(--background);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 0.75rem;
-    display: flex;
-    gap: 0.5rem;
-    box-shadow: var(--shadow);
     z-index: 1000;
 }
 
+.color-menu-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
+.color-menu-btn i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.color-menu-btn:hover {
+    transform: scale(1.05);
+}
+
+.color-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    background: var(--background);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: var(--shadow);
+    animation: slideDown 0.2s ease-out;
+}
+
+.color-options.show {
+    display: flex;
+}
+
 .color-theme-btn {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: 2px solid var(--border-color);
     cursor: pointer;
@@ -629,231 +665,238 @@ header h1 {
     transform: scale(1.1);
 }
 
-.color-theme-btn.active::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.theme-indigo { background: var(--theme-indigo); }
-.theme-rose { background: var(--theme-rose); }
-.theme-emerald { background: var(--theme-emerald); }
-.theme-amber { background: var(--theme-amber); }
-.theme-sky { background: var(--theme-sky); }
-.theme-violet { background: var(--theme-violet); }
-
-/* Add these styles for the completion animation */
-@keyframes completionPulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
-    50% {
-        transform: scale(1.02);
-        box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-.completion-animation {
-    animation: completionPulse 1s ease-out;
-}
-
-/* Add these background character styles */
-.background-characters {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.1;
-    transition: opacity 0.3s;
-}
-
-.character {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.character-1 {
-    top: 10%;
-    left: 5%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%236366f1"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M35 65 Q50 80 65 65" stroke="white" fill="none" stroke-width="3"/></svg>');
-    animation: float 6s ease-in-out infinite;
-}
-
-.character-2 {
-    top: 70%;
-    right: 5%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%2322c55e"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M35 60 Q50 70 65 60" stroke="white" fill="none" stroke-width="3"/></svg>');
-    animation: float 8s ease-in-out infinite;
-}
-
-.character-3 {
-    top: 40%;
-    right: 15%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23f43f5e"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M35 60 Q50 50 65 60" stroke="white" fill="none" stroke-width="3"/></svg>');
-    animation: float 7s ease-in-out infinite;
-}
-
-.character-4 {
-    bottom: 20%;
-    left: 10%;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23a78bfa"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M35 65 Q50 75 65 65" stroke="white" fill="none" stroke-width="3"/></svg>');
-    animation: float 9s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    25% {
-        transform: translateY(-10px) rotate(3deg);
-    }
-    75% {
-        transform: translateY(10px) rotate(-3deg);
-    }
-}
-
-[data-theme="dark"] .background-characters {
-    opacity: 0.05;
-}
-
-/* Add hover effect to make characters more visible */
-.container:hover ~ .background-characters {
-    opacity: 0.15;
-}
-
-[data-theme="dark"] .container:hover ~ .background-characters {
-    opacity: 0.08;
-}
-
-/* Add subtle rotation animations */
-.character-1 { animation-delay: -2s; }
-.character-2 { animation-delay: -1s; }
-.character-3 { animation-delay: -3s; }
-.character-4 { animation-delay: -4s; }
-
-/* Update mobile responsive styles */
+/* Update mobile styles for color switcher */
 @media (max-width: 768px) {
+    /* Fix overall layout */
+    body {
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+        background: var(--body-bg);
+    }
+
     /* Adjust container spacing */
     .container {
-        margin: 4rem auto 6rem;  /* Add more space top and bottom */
-        padding: 0 1rem;
+        margin: 0;
+        padding: 1rem;
         width: 100%;
+        min-height: calc(100vh - 60px); /* Account for header space */
+        display: flex;
+        flex-direction: column;
+        padding-top: 4.5rem; /* Space for fixed header controls */
     }
 
-    /* Fix color theme selector position */
-    .color-themes {
-        position: fixed;
-        bottom: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 999;
-        background: var(--background);
-        padding: 0.5rem;
-        border-radius: 20px;
-        box-shadow: var(--shadow);
+    /* Fix header positioning */
+    header {
+        margin: 0 0 1rem 0;
     }
 
-    /* Adjust theme switcher */
-    .theme-switcher {
-        top: 0.5rem;
-        right: 0.5rem;
+    header h1 {
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
     }
 
-    /* Fix goal input spacing */
+    .date-display {
+        font-size: 0.9rem;
+    }
+
+    /* Fix goal input */
     .goal-input {
-        margin-bottom: 1rem;
+        margin: 0 0 1rem 0;
+        padding: 0.75rem;
         flex-direction: column;
         gap: 0.5rem;
+        border-radius: 8px;
     }
 
     .goal-input input {
         width: 100%;
+        height: 44px;
+        font-size: 1rem;
+        padding: 0 1rem;
     }
 
     .goal-input button {
         width: 100%;
+        height: 44px;
         justify-content: center;
+        font-size: 1rem;
     }
 
-    /* Adjust goals container */
+    /* Fix goals container */
     .goals-container {
-        margin-bottom: 5rem;  /* Add space for bottom elements */
-        border-radius: 16px;
+        flex: 1;
+        margin-bottom: 5rem;
+        padding: 0.75rem;
+        border-radius: 8px;
     }
 
-    /* Fix AI assistant positioning */
+    .goals-header {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .goals-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .goal-item {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-radius: 6px;
+    }
+
+    .goal-text {
+        font-size: 0.95rem;
+    }
+
+    /* Fix controls positioning */
+    .controls-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        z-index: 1000;
+        background: var(--background);
+        box-shadow: var(--shadow);
+    }
+
+    .theme-switcher {
+        position: static;
+        margin: 0;
+    }
+
+    .theme-switcher button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .color-themes {
+        position: static;
+        transform: none;
+    }
+
+    .color-menu-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .color-menu-btn i {
+        font-size: 1rem;
+    }
+
+    .color-options {
+        position: absolute;
+        top: 100%;
+        right: 0.5rem;
+        left: auto;
+        margin-top: 0.5rem;
+        background: var(--background);
+        padding: 0.5rem;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+    }
+
+    /* Fix AI assistant */
     .ai-assistant {
-        bottom: 4.5rem;  /* Position above color themes */
+        bottom: 1rem;
         right: 1rem;
-        z-index: 998;
     }
 
     .ai-toggle {
-        width: 48px;
-        height: 48px;
-        padding: 0;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
     }
 
-    /* Ensure proper stacking */
-    .color-themes {
-        z-index: 997;
-    }
-    
-    .theme-switcher {
-        z-index: 996;
-    }
-
-    /* Adjust header spacing */
-    header {
-        margin-top: 3rem;  /* Add space for theme switcher */
-        margin-bottom: 1.5rem;
+    .chat-container.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
     }
 
     /* Make buttons more touch-friendly */
-    .color-theme-btn {
-        width: 32px;
-        height: 32px;
-        margin: 0 2px;
+    .goal-checkbox {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+    }
+
+    .delete-btn {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+    }
+
+    .goal-number {
+        font-size: 0.9rem;
+        min-width: 20px;
     }
 }
 
-/* Additional fixes for very small screens */
+/* Additional fixes for smaller phones */
 @media (max-width: 380px) {
     .container {
-        margin: 3.5rem auto 5rem;
+        padding: 4.5rem 0.75rem 1rem 0.75rem;
     }
 
-    .color-themes {
-        padding: 0.4rem;
+    header h1 {
+        font-size: 1.3rem;
     }
 
-    .color-theme-btn {
-        width: 28px;
-        height: 28px;
+    .goals-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .goal-text {
+        font-size: 0.9rem;
     }
 }
 
 /* Fix for notched phones */
 @supports (padding: max(0px)) {
     .container {
+        padding-top: max(4.5rem, env(safe-area-inset-top));
         padding-left: max(1rem, env(safe-area-inset-left));
         padding-right: max(1rem, env(safe-area-inset-right));
         padding-bottom: max(1rem, env(safe-area-inset-bottom));
     }
+
+    .controls-container {
+        padding-top: max(0.5rem, env(safe-area-inset-top));
+        padding-right: max(0.5rem, env(safe-area-inset-right));
+        padding-left: max(0.5rem, env(safe-area-inset-left));
+    }
 }
+
+/* Add these color classes back */
+.theme-indigo { background: var(--theme-indigo) !important; }
+.theme-rose { background: var(--theme-rose) !important; }
+.theme-emerald { background: var(--theme-emerald) !important; }
+.theme-amber { background: var(--theme-amber) !important; }
+.theme-sky { background: var(--theme-sky) !important; }
+.theme-violet { background: var(--theme-violet) !important; }

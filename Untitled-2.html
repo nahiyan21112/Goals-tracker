@@ -12,18 +12,25 @@
     <link rel="apple-touch-icon" href="/icon-192.png">
 </head>
 <body>
-    <div class="theme-switcher">
-        <button onclick="toggleTheme()" id="themeToggle">
-            <i class="fas fa-sun"></i>
-        </button>
-    </div>
-    <div class="color-themes">
-        <button onclick="setColorTheme('indigo')" class="color-theme-btn theme-indigo active" title="Indigo"></button>
-        <button onclick="setColorTheme('rose')" class="color-theme-btn theme-rose" title="Rose"></button>
-        <button onclick="setColorTheme('emerald')" class="color-theme-btn theme-emerald" title="Emerald"></button>
-        <button onclick="setColorTheme('amber')" class="color-theme-btn theme-amber" title="Amber"></button>
-        <button onclick="setColorTheme('sky')" class="color-theme-btn theme-sky" title="Sky"></button>
-        <button onclick="setColorTheme('violet')" class="color-theme-btn theme-violet" title="Violet"></button>
+    <div class="controls-container">
+        <div class="color-themes">
+            <button class="color-menu-btn" onclick="toggleColorMenu()">
+                <i class="fas fa-palette"></i>
+            </button>
+            <div class="color-options" id="colorOptions">
+                <button onclick="setColorTheme('indigo')" class="color-theme-btn theme-indigo" title="Indigo"></button>
+                <button onclick="setColorTheme('rose')" class="color-theme-btn theme-rose" title="Rose"></button>
+                <button onclick="setColorTheme('emerald')" class="color-theme-btn theme-emerald" title="Emerald"></button>
+                <button onclick="setColorTheme('amber')" class="color-theme-btn theme-amber" title="Amber"></button>
+                <button onclick="setColorTheme('sky')" class="color-theme-btn theme-sky" title="Sky"></button>
+                <button onclick="setColorTheme('violet')" class="color-theme-btn theme-violet" title="Violet"></button>
+            </div>
+        </div>
+        <div class="theme-switcher">
+            <button onclick="toggleTheme()" id="themeToggle">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
     </div>
     <div class="container">
         <header>

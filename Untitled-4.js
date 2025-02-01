@@ -342,20 +342,18 @@ function setColorTheme(color) {
     const root = document.documentElement;
     const isDark = root.getAttribute('data-theme') === 'dark';
     
-    // Update active button
-    document.querySelectorAll('.color-theme-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.classList.contains(`theme-${color}`)) {
-            btn.classList.add('active');
-        }
-    });
-
     // Set the new color theme
     root.style.setProperty('--primary', `var(--theme-${color})`);
     root.style.setProperty('--primary-hover', `var(--theme-${color}-hover)`);
     
+    // Update color menu button background
+    document.querySelector('.color-menu-btn').style.background = `var(--theme-${color})`;
+    
     // Save the preference
     localStorage.setItem('colorTheme', color);
+    
+    // Close the menu
+    document.getElementById('colorOptions').classList.remove('show');
 }
 
 // Add a helper function to show task completion animation
@@ -366,4 +364,18 @@ function showCompletionAnimation(goalElement) {
             goalElement.classList.remove('completion-animation');
         }, 1000);
     }
+}
+
+// Add this function to handle the color menu
+function toggleColorMenu() {
+    const colorOptions = document.getElementById('colorOptions');
+    colorOptions.classList.toggle('show');
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function closeMenu(e) {
+        if (!e.target.closest('.color-themes')) {
+            colorOptions.classList.remove('show');
+            document.removeEventListener('click', closeMenu);
+        }
+    });
 }
